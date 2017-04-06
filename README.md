@@ -242,7 +242,11 @@ function buildResponse(options) {
 {"quoteText":"Man cannot discover new oceans unless he has the courage to lose sight of the shore.", "quoteAuthor":"Andre Gide", "senderName":"", "senderLink":"", "quoteLink":"http://forismatic.com/en/bb87ad583b/"}
 ```
 
-        
+    - Add getQuote `code` in index.js
+    - Set up local lambda machine for testing locally
+> npm install -g lambda-local
+
+
 
 
                

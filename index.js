@@ -1,4 +1,5 @@
 'use strict'; 
+var http = require ('http');
 
 exports.handler = function (event,context) {
     var request  = event.request;
@@ -20,13 +21,24 @@ if (request.type === "LaunchRequest") {
 
 } else if (request.type === "IntentRequest"){
     let options = {};
+   
     if (request.intent.name === "HelloIntent"){
         
         let name = request.intent.slots.FirstName.value;
         options.speechText = "woof, Hi" +name+ " .";
         options.speechText += getWish();
-        options.endSession = true;
-        context.succeed(buildResponse(options));
+        getQuote(function(quote,err){
+            if(err) {
+                context.fail(err);
+            } else {
+                options.speechText += quote;
+                options.endSession = true;
+                context.succeed(buildResponse(options));
+            }
+        });
+        
+        
+        
     } else {
         context.fail("Unknown HelloIntent request")
     }
@@ -35,6 +47,27 @@ if (request.type === "LaunchRequest") {
 } else {
     context.fail("Unknown LaunchRequest type");
     }
+}
+
+function getQuote (callback) {
+    var url = "http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json";
+    var req = http.get(url,function(res){
+        var body = "";
+
+        res.on('data',function(chunk){
+            body += chunk;
+        });
+
+        res.on('end', function(){
+            body = body.replace(/\\/g,'');
+            var quote = JSON.parse(body);
+            callback(quote.quoteText);
+        });
+    }); 
+
+    req.on('error', function(err){
+        callback('', err);
+    });
 }
 
 function getWish(){
@@ -73,5 +106,5 @@ function buildResponse(options) {
             }
         };
     }
-    return respons;
+    return response;
 }
