@@ -233,6 +233,14 @@ function buildResponse(options) {
 }
 ```
 
+## Add an API
+
+    - Get API from site, free quote api - http://forismatic.com/en/api/
+    - Make an api response > http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json
+        - Get JSON Response , For example :- 
+```json
+{"quoteText":"Man cannot discover new oceans unless he has the courage to lose sight of the shore.", "quoteAuthor":"Andre Gide", "senderName":"", "senderLink":"", "quoteLink":"http://forismatic.com/en/bb87ad583b/"}
+```
 
         
 
