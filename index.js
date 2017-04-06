@@ -25,7 +25,8 @@ if (request.type === "LaunchRequest") {
     if (request.intent.name === "HelloIntent"){
         
         let name = request.intent.slots.FirstName.value;
-        options.speechText = "woof, Hi " +name+ " .";
+        options.speechText = `woof <say-as interpret-as="spell-out">${name}</say-as> ${name}. `;
+        // options.speechText = "woof, Hi " +name+ " .";
         options.speechText += getWish();
         getQuote(function(quote,err){
             if(err) {
@@ -82,7 +83,7 @@ function getWish(){
     } else if (hours < 18) {
         return "Woof afternoon, Is it Time for Lunch? As some human once said ";
     } else {
-        return "Woof evening, Is it Time for Dinner? As some human once said";
+        return "Woof evening, Is it Time for Dinner? As some human once said ";
     }
 }
 
@@ -91,8 +92,8 @@ function buildResponse(options) {
         version: "1.0",
         response:{
             outputSpeech: {
-                type: "PlainText",
-                text: options.speechText
+                type: "SMML",
+                ssml: "<speak>"+options.speechText+"</speak>"
             },
             shouldEndSession: options.endSession
         }
@@ -101,8 +102,8 @@ function buildResponse(options) {
     if(options.repromptText){
         response.response.reprompt = {
             outputSpeech: {
-                type: "PlainText",
-                text: options.repromptText
+                type: "SSML",
+                ssml: "<speak>"+options.speechText+"</speak>"  
             }
         };
     }
