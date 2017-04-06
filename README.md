@@ -233,7 +233,7 @@ function buildResponse(options) {
 }
 ```
 
-## Add an API
+## Add an API and Test Locally
 
     - Get API from site, free quote api - http://forismatic.com/en/api/
     - Make an api response > http://api.forismatic.com/api/1.0/json?method=getQuote&lang=en&format=json
@@ -242,11 +242,16 @@ function buildResponse(options) {
 {"quoteText":"Man cannot discover new oceans unless he has the courage to lose sight of the shore.", "quoteAuthor":"Andre Gide", "senderName":"", "senderLink":"", "quoteLink":"http://forismatic.com/en/bb87ad583b/"}
 ```
 
-    - Add getQuote `code` in index.js
-    - Set up local lambda machine for testing locally
+- Add getQuote `code` in index.js
+- Set up local lambda machine for testing locally
 > npm install -g lambda-local
+- Run the following command to test entire testing flow locally
+> lambda-local -l index.js -h handler -e event.json
 
+## Test using Web Version
+- https://echosim.io/
 
-
-
-               
+## SSML - Speech synthesis markup language & Direct Index.js upload to AWS
+- Amazon reference link > https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference
+- 
+    

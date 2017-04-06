@@ -25,7 +25,7 @@ if (request.type === "LaunchRequest") {
     if (request.intent.name === "HelloIntent"){
         
         let name = request.intent.slots.FirstName.value;
-        options.speechText = "woof, Hi" +name+ " .";
+        options.speechText = "woof, Hi " +name+ " .";
         options.speechText += getWish();
         getQuote(function(quote,err){
             if(err) {
@@ -78,11 +78,11 @@ function getWish(){
     }
 
     if(hours < 12) {
-        return "Woof Morning, Time for Breakfast?";
+        return "Woof Morning, Is it Time for Breakfast? As some human once said ";
     } else if (hours < 18) {
-        return "Woof afternoon, Time for Lunch?";
+        return "Woof afternoon, Is it Time for Lunch? As some human once said ";
     } else {
-        return "Woof evening, Time for Dinner?";
+        return "Woof evening, Is it Time for Dinner? As some human once said";
     }
 }
 
