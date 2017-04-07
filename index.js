@@ -1,17 +1,9 @@
 'use strict'; 
-var http = require ('http');
+ var http = require ('http');
 
 exports.handler = function (event,context) {
     var request  = event.request;
-
-    /**
-     * 3 types of requests
-    i)   LaunchRequest       Ex: "Open greeter"
-    ii)  IntentRequest       Ex: "Say hello to John" or "ask greeter to say hello to John"
-    iii) SessionEndedRequest Ex: "exit" or error or timeout
-
-     */
-
+try {
 if (request.type === "LaunchRequest") {
     var options = {};
     options.speechText = "Hi my name is millie i'm the family doggie, using alexa i can talk but in real life i cannot see, i can see but i can not talk, tell alexa who is here. ";
@@ -25,8 +17,8 @@ if (request.type === "LaunchRequest") {
     if (request.intent.name === "HelloIntent"){
         
         let name = request.intent.slots.FirstName.value;
-        options.speechText = `woof <say-as interpret-as="spell-out">${name}</say-as> ${name}. `;
-        // options.speechText = "woof, Hi " +name+ " .";
+        // options.speechText = `woof <say-as interpret-as="spell-out">${name}</say-as> ${name}. `;
+        options.speechText = "woof, Hi " +name+ " .";
         options.speechText += getWish();
         getQuote(function(quote,err){
             if(err) {
@@ -38,15 +30,16 @@ if (request.type === "LaunchRequest") {
             }
         });
         
-        
-        
     } else {
-        context.fail("Unknown HelloIntent request")
+       throw "Unknown HelloIntent request";
     }
 } else if (request.type === "SessionEndedRequest") {
 
 } else {
-    context.fail("Unknown LaunchRequest type");
+    throw "Unknown intent type";
+ } 
+} catch(e) {
+    context.fail("Exception: " +e);
     }
 }
 
@@ -62,7 +55,7 @@ function getQuote (callback) {
         res.on('end', function(){
             body = body.replace(/\\/g,'');
             var quote = JSON.parse(body);
-            callback(quote.quoteText);
+            callback(quote.quoteText); // define what parameter you want from the api like quoteText  
         });
     }); 
 
