@@ -230,7 +230,7 @@ function buildResponse(options) {
             }
         };
     }
-    return respons;
+    return response;
 }
 ```
 
@@ -252,7 +252,28 @@ function buildResponse(options) {
 ## Test using Web Version
 - https://echosim.io/
 
-## SSML - Speech synthesis markup language & Direct Index.js upload to AWS
+## SSML - Speech synthesis markup language
 - Amazon reference link > https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference
-- 
-    
+
+## AWSCLI 
+- Download Pythong 2.7.1 if you don't have it 
+- run command 
+> pip install awscli
+> aws configure
+- Follow these steps if aws configure DOES NOT WORK, getting Command not found
+1. Make sure Correct Python from Terminal
+> `python --version`
+
+2. Run this Command
+> curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+
+3. Unzip the package
+> unzip awscli-bundle.zip
+
+4. Run the install 
+> sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+5. Run the command aws configure 
+> aws configure 
+
+- These steps should Work 
