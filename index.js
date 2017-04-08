@@ -85,7 +85,7 @@ function buildResponse(options) {
         version: "1.0",
         response:{
             outputSpeech: {
-                type: "SMML",
+                type: "SSML",
                 ssml: "<speak>"+options.speechText+"</speak>"
             },
             shouldEndSession: options.endSession
