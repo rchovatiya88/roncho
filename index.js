@@ -230,7 +230,7 @@ function handleNextQuoteIntent(request,context,session) {
     });
   } else {
     options.speechText = " Wrong invocation of this intent. ";
-    options.endSesstion = true;
+    options.endSession = true;
     context.succeed(buildResponse(options));
   }
 
