@@ -167,7 +167,7 @@ describe('All intents', function() {
         });
 
           it('valid repromptSpeech', function() {
-        expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/you can say/);
+        expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/You can say yes or one more./);
        });
     });
 
@@ -189,11 +189,11 @@ describe (`Test NextQuoteIntent correct invocation`, function (){
         });
 
         it('valid outputSpeech', function(){
-            expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/Do you want/);
+            expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/<speak>*/);
         });
 
           it('valid repromptSpeech', function() {
-        expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/you can say/);
+        expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/You can say yes or one more./);
        });
     });
 
@@ -215,12 +215,9 @@ describe (`Test NextQuoteIntent wrong invocation`, function (){
         });
 
         it('valid outputSpeech', function(){
-            expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/wrong invocation/);
+            expect(ctx.speechResponse.response.outputSpeech.ssml).to.match(/ Wrong invocation of this intent/);
         });
 
-    //       it('valid repromptSpeech', function() {
-    //     expect(ctx.speechResponse.response.reprompt.outputSpeech.ssml).to.match(/you can say/);
-    //    });
 });
 
 describe (`Test AMAZON.StopIntent`, function (){
