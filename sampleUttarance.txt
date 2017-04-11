@@ -1,0 +1,7 @@
+HelloIntent ask {FirstName}
+
+QuoteIntent tell me a quote 
+
+NextQuoteIntent one more
+NextQuoteIntent yes
+NextQuoteIntent more 
